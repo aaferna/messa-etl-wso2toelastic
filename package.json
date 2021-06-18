@@ -1,0 +1,37 @@
+{
+  "name": "messa",
+  "version": "1.0.0",
+  "description": "ETL for WSO2 to Elasticsearch",
+  "main": "index.js",
+  "dependencies": {
+    "ajv": "8.6.0",
+    "bunyan": "1.8.15",
+    "install": "0.13.0",
+    "node-fetch": "2.6.1",
+    "npm": "7.17.0",
+    "tail-file": "1.4.14"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gusgeek/Messa.git"
+  },
+  "keywords": [
+    "etl",
+    "wso2",
+    "elastic",
+    "elasticsearch",
+    "api",
+    "manager",
+    "json"
+  ],
+  "author": "gusgeek",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/gusgeek/Messa/issues"
+  },
+  "homepage": "https://github.com/gusgeek/Messa#readme"
+}
