@@ -4,9 +4,9 @@
   "description": "ETL for WSO2 to Elasticsearch",
   "main": "index.js",
   "dependencies": {
-    "ajv": "8.6.0",
     "bunyan": "1.8.15",
     "install": "0.13.0",
+    "minimist": "^1.2.5",
     "node-fetch": "2.6.1",
     "npm": "7.17.0",
     "tail-file": "1.4.14"
