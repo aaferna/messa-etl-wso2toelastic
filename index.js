@@ -67,12 +67,12 @@ MESSA v${pjson.version}
 console.log("\x1b[37m",`
     Parametria
         Argumento           Descripcion                     Tipo    Notas
-        -c=''               JSON File con Configuracion     str     
+        -c=''               JSON File con Configuracion     str     Archivo de Configuracion
         -h                  Ayuda
         
     > Ejemplo 
     
-        messa.exe -s='localhost' -p='3306' -p='/var/logs/apache.log'
+        messa.exe -c='config.json'
 
     > Ejemplo JSON Config File `);
 console.log('\x1b[33m%s\x1b[0m',`
