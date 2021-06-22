@@ -78,3 +78,6 @@ typings/
 # FuseBox cache
 .fusebox/
 package-lock.json
+messa-linux
+messa-macos
+messa-win.exe

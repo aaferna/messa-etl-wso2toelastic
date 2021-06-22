@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "ETL for WSO2 to Elasticsearch",
   "main": "index.js",
+  "bin": "index.js", 
   "dependencies": {
     "bunyan": "1.8.15",
     "install": "0.13.0",
@@ -11,6 +12,7 @@
     "npm": "7.17.0",
     "tail-file": "1.4.14"
   },
+  
   "devDependencies": {},
   "scripts": {
     "start": "node index.js"
