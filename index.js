@@ -77,11 +77,9 @@ console.log("\x1b[37m",`
     > Ejemplo JSON Config File `);
 console.log('\x1b[33m%s\x1b[0m',`
             {
-                "name": "WSo2",
                 "server": "http://127.0.0.1:9200",
-                "varset": "/index/app",
-                "port": "3306",
-                "logfile": "/var/www/log.fs"
+                "varset": "/wso2",
+                "logfile": "D:\\ELK\\wso2am-4.0.0\\wso2am-4.0.0\\repository\\logs\\wso2carbon.log"
             }
 `)
     } else {
