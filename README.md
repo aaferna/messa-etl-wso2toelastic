@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/gusgeek/Messa/main/logo.png">
+  <img src="https://raw.githubusercontent.com/gusgeek/Messa/main/logo.svg">
   <br>
   ETL for WSO2 Logs in Elastic Stack
 </p>
