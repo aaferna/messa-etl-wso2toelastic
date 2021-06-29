@@ -1,87 +1,80 @@
 const Tail = require('tail-file')
 const fetch = require('node-fetch')
 const argv = require('minimist')(process.argv.slice(2))
-
-let filterChars = require('./modulos/filterChars.js');
-let factoriza = require('./modulos/factoriza.js');
-let getData = require('./modulos/getData.js');
+const f = require('./modulos/factoriza.js');
+const l = require('./modulos/logger.js');
 
 let pjson = require('./package.json');
 
-// Parametria de API
-    const headers = { 'Content-Type': 'application/json' };
+const headers = { 'Content-Type': 'application/json' };
 
+const ejecutor = (url, headers, directorio, app, logc) => {
 
-const ejecutor = (url, headers, directorio, app) => {
-    
     let contador = 0
     let testigoDateado = ''
-    let testigo = false 
 
-    new Tail(directorio, line => {
+    const traking = new Tail(directorio, line => {
 
-        let lineFilter = filterChars.filterChars(line)
+        let lineFilter = f.filterChars(line)
     
-            if(lineFilter == '$l2ji$'){
-                testigo = true
-            } else if(lineFilter == '$l2je$'){
-    
+            if(lineFilter == '$l2ji$'){ testigo = true } 
+            else if(lineFilter == '$l2je$'){
                 testigo = false
-    
-                    fetch(url+'?routing='+app, {
+                let data = f.jsonStructor(testigoDateado, app)
+                    fetch(url, {
                         method: 'post',
-                        body:    JSON.stringify(getData.getData(testigoDateado, app)),
-                        headers: headers,
+                        body:    JSON.stringify(data),
+                        headers: headers
                     })
                     .then(res => res.json())
-                    .then(json => console.log(json));
+                    .then(json => {
+                        if (logc.active == true){
+                            l.logger(logc.directory, app, "Post " + JSON.stringify(data) + "\nResponse " + JSON.stringify(json))
+                        }
+                    });
     
                 testigoDateado = ''
-    
             } else {
-                let varString = factoriza.factoriza(lineFilter);
+                let varString = f.factoriza(lineFilter);
                 testigoDateado = testigoDateado.concat(' ', varString)
             }
     
         contador = contador + 1
     
     });
+
+    traking.on('error', err => console.log("\x1b[31m%s\x1b[0m", 'Encontramos un '+ err) );
 }
 
 
     if(argv.c){
         let cjson = require(argv.c);
-            // console.log(cjson)
-            ejecutor(cjson.server+cjson.varset+'/_doc', headers, cjson.logfile, 'Massa ETL')
-            
+            //console.log(cjson)
+            ejecutor(cjson.server+cjson.varset+'/_doc', headers, cjson.logfile, cjson.app, cjson.log)
     } 
-    // else if(argv.l && argv.s && argv.p) {
-    //     console.log(argv.l + argv.s + argv.p)
-    //     ejecutor(cjson.s+cjson.varset+'/_doc', headers, cjson.logfile, 'Massa ETL')
-    // } 
     else if(argv.h){
 
 console.log("\x1b[5m",`
-MESSA v${pjson.version}
-`);
-console.log("\x1b[37m",`
+MESSA v${pjson.version}`);
+console.log("\x1b[37m%s\x1b[0m",`
     Parametria
         Argumento           Descripcion                     Tipo    Notas
         -c=''               JSON File con Configuracion     str     Archivo de Configuracion
         -h                  Ayuda
-        
+    
     > Ejemplo 
     
-        messa.exe -c='config.json'
+        messa.exe -c='./config.json'
 
-    > Ejemplo JSON Config File `);
-console.log('\x1b[33m%s\x1b[0m',`
-            {
-                "server": "http://127.0.0.1:9200",
-                "varset": "/wso2",
-                "logfile": "D:\\ELK\\wso2am-4.0.0\\wso2am-4.0.0\\repository\\logs\\wso2carbon.log"
-            }
-`)
+    Aviso
+        - Si utiliza el sistema de Logs de Messa, es necesario que cree el directorio absoluto 
+        para que Messa pueda crear los archivos de Log de manera correcta
+    
+
+    > Mas Info https://github.com/gusgeek/messa-etl-wso2toelastic 
+    
+    `);
+
     } else {
         console.log ("\x1b[1m%s\x1b[0m", 
         ` No se obtuvo ningun parametro ni archivo de configuracion, obtenga ayuda con el tag -h `)

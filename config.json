@@ -1,5 +1,10 @@
 {
     "server": "http://127.0.0.1:9200",
     "varset": "/wso2",
-    "logfile": "D:\\ELK\\wso2am-4.0.0\\wso2am-4.0.0\\repository\\logs\\wso2carbon.log"
+    "app": "WSo2",
+    "logfile": "D:\\ELK\\wso2am-4.0.0\\wso2am-4.0.0\\repository\\logs\\wso2carbon.log",
+    "log": {
+        "active" : true,
+        "directory" : "./"
+    }
 }
