@@ -31,6 +31,11 @@ const ejecutor = (url, headers, directorio, app, logc) => {
                         if (logc.active == true){
                             l.logger(logc.directory, app, "Post " + JSON.stringify(data) + "\nResponse " + JSON.stringify(json))
                         }
+                    })
+                    .catch( err => {
+                        if (logc.active == true){
+                            l.logger(logc.directory, app, "ERROR " + err)
+                        }
                     });
     
                 testigoDateado = ''
@@ -43,7 +48,10 @@ const ejecutor = (url, headers, directorio, app, logc) => {
     
     });
 
-    traking.on('error', err => console.log("\x1b[31m%s\x1b[0m", 'Encontramos un '+ err) );
+    traking.on('error', err => {
+        l.logger(logc.directory, app, "ERROR " + err)
+        console.log("\x1b[31m%s\x1b[0m", 'Encontramos un '+ err)
+    } );
 }
 
 
