@@ -2,3 +2,4 @@
 21:19:34 > Post {"app":"am#sample#pizzashack#v1","date":"2021-06-29 19:23:11,580-0300","type":"INFO","runner":"org.wso2.carbon.core.init.CarbonServerManager","message":"Shutting down OSGi framework..."}
 Response {"_index":"wso2","_type":"_doc","_id":"YmRJWnoBmnhFhyxhDBgJ","_version":1,"result":"created","_shards":{"total":2,"successful":1,"failed":0},"_seq_no":2734,"_primary_term":4}
 21:24:54 > ERROR Error: ENOENT: no such file or directory, stat 'D:\ELK\wso2am-4.0.0\wso2am-4.0.0\repository\logs\wso2carbon.log'
+
