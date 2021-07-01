@@ -5,6 +5,7 @@
     "logfile": "D:\\ELK\\wso2am-4.0.0\\wso2am-4.0.0\\repository\\logs\\wso2carbon.log",
     "log": {
         "active" : true,
-        "directory" : "./"
+        "directory" : "./",
+        "port" : 1200
     }
 }

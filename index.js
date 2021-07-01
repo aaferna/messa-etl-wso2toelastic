@@ -9,18 +9,21 @@ let pjson = require('./package.json');
 const headers = { 'Content-Type': 'application/json' };
 
 const ejecutor = (url, headers, directorio, app, logc) => {
-
+    const port = logc.port
+    
     let contador = 0
     let testigoDateado = ''
 
     const traking = new Tail(directorio, line => {
 
         let lineFilter = f.filterChars(line)
+        
     
             if(lineFilter == '$l2ji$'){ testigo = true } 
             else if(lineFilter == '$l2je$'){
                 testigo = false
                 let data = f.jsonStructor(testigoDateado, app)
+                let ret
                     fetch(url, {
                         method: 'post',
                         body:    JSON.stringify(data),
@@ -29,15 +32,16 @@ const ejecutor = (url, headers, directorio, app, logc) => {
                     .then(res => res.json())
                     .then(json => {
                         if (logc.active == true){
-                            l.logger(logc.directory, app, "Post " + JSON.stringify(data) + "\nResponse " + JSON.stringify(json))
+                             ret = l.logger(logc.directory, app, "Post " + JSON.stringify(data) + "\nResponse " + JSON.stringify(json))
                         }
                     })
                     .catch( err => {
                         if (logc.active == true){
-                            l.logger(logc.directory, app, "ERROR " + err)
+                             ret = l.logger(logc.directory, app, "ERROR " + err)
                         }
                     });
-    
+                    
+                    
                 testigoDateado = ''
             } else {
                 let varString = f.factoriza(lineFilter);
@@ -52,6 +56,7 @@ const ejecutor = (url, headers, directorio, app, logc) => {
         l.logger(logc.directory, app, "ERROR " + err)
         console.log("\x1b[31m%s\x1b[0m", 'Encontramos un '+ err)
     } );
+
 }
 
 

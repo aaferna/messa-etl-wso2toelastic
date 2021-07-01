@@ -81,3 +81,4 @@ package-lock.json
 messa-linux
 messa-macos
 messa-win.exe
+*.messa
