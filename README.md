@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img width="500" src="https://raw.githubusercontent.com/gusgeek/messa-etl-wso2toelastic/606da547adafcd84ee5a72071d1535958d9bd521/logo.svg">
+  <img width="500" src="https://github.com/gusgeek/messa-etl-wso2toelastic/blob/main/logo.svg">
   <br>
   ETL for WSO2 Logs in Elastic Stack
 </p>
