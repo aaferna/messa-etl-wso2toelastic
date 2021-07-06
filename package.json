@@ -7,7 +7,7 @@
   "dependencies": {
     "bunyan": "1.8.15",
     "fs": "0.0.1-security",
-    "install": "0.13.0",
+    "np": "0.13.0",
     "minimist": "^1.2.5",
     "node-fetch": "2.6.1",
     "npm": "7.17.0",
